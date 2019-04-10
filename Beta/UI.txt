@@ -1,0 +1,22 @@
+
+
+        --UI DRAFT--
+
+
+** CATEGORIZING INJURY **
+How would your injury categorize as?
+1- ...
+2- ...
+3- ...
+4- ...
+5- ...
+6- other
+
+
+** Using ESI to rate from 1:5 **
+1- does it require immediate life-saving intervention?
+2- Is it a high risk situation, or a severe pain/distress?
+3- how many different resources are needed for it?
+3A: 1. none 2. one  3. many
+if many:
+4- are vitals in danger zone?
