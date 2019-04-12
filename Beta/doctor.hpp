@@ -1,4 +1,5 @@
 #include<iostream>
+#pragma once
 #include <queue>
 #include "patient.hpp"
 
@@ -11,4 +12,4 @@ class Doctor
   public:
   Doctor(string specialization);
   
-}
+};
