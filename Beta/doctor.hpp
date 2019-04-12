@@ -1,12 +1,12 @@
 #include<iostream>
 #include <queue>
-#include "patients.hpp"
+#include "patient.hpp"
 
 class Doctor
 {
   private:
   string specialization;
-  queue<Patients>;
+  queue<Patient>;
 
   public:
   Doctor(string specialization);
