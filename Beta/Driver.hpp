@@ -50,8 +50,8 @@ public:
     
 private:
     
-    vector<doctor> doctors;
-    vector<patient> patients;
+    vector<doctorNode> doctors;
+    vector<patientNode> patients;
     
 };
 
