@@ -20,6 +20,7 @@ public:
     
     //Purpose: constructor
     PriorityQueue(int queueSize);
+    PriorityQueue();
     
     // Purpose: deconstructor
     ~PriorityQueue();
@@ -43,10 +44,10 @@ private:
     
     
     //Purpose: maintain heap properties by swapping node with parent if necessary
-    void heapMax(int nodeIndex);
+    void repairUpward(int nodeIndex);
     
     // Purpose: maintain heap properties by swapping node with child if necessary
-    void heapMin(int nodeIndex);
+    void repairDownward(int nodeIndex);
     
     patientNode* queuePointer; //pointer to the array used to implement priority queue
     int currentSize; //number of group currently in the priority queue
@@ -64,5 +65,4 @@ private:
 };
 
 #endif /* PriorityQueue_hpp */
-
 

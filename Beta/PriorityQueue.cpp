@@ -18,6 +18,16 @@ PriorityQueue::PriorityQueue(int queueSize){
     
 }
 
+PriorityQueue::PriorityQueue(){
+    
+    maxSize = 10;
+    currentSize = 0;
+    
+    queuePointer = new patientNode[10];
+    
+}
+
+
 // Purpose: deconstructor
 PriorityQueue::~PriorityQueue(){
     
@@ -37,13 +47,13 @@ void PriorityQueue::enqueue (std::string name, int esi){
         return;
     }
     
-    
+        
     patientNode node;
     node.name = name;
     node.esi = esi;
     
     queuePointer[currentSize] = node;
-    heapMax(currentSize);
+    repairUpward(currentSize);
     currentSize++;
     
     
@@ -58,7 +68,7 @@ void PriorityQueue::dequeue(){
     }
     
     queuePointer[0] = queuePointer[currentSize-1];
-    heapMin(0);
+    repairDownward(0);
     currentSize--;
     
 }
@@ -93,7 +103,7 @@ bool PriorityQueue::isEmpty(){
 //Private functions:
 
 //Purpose: maintain heap properties by swapping node with parent if necessary
-void PriorityQueue::heapMax(int nodeIndex){
+void PriorityQueue::repairUpward(int nodeIndex){
     
     while ((hasParent(nodeIndex)) && (queuePointer[getParentIndex(nodeIndex)].esi > queuePointer[nodeIndex].esi))
     {
@@ -139,3 +149,4 @@ void PriorityQueue::repairDownward(int nodeIndex){
     }
     
 }
+
