@@ -113,9 +113,29 @@ void PriorityQueue::heapMax(int nodeIndex){
 }
 
 // Purpose: maintain heap properties by swapping node with child if necessary
-void PriorityQueue::heapMin(int nodeIndex){
+void PriorityQueue::repairDownward(int nodeIndex){
     
-    
+    while (hasLeftChild(nodeIndex, currentSize)) {
+        
+        int smallerChildIndex = getLeftChildIndex(nodeIndex);
+        
+        if (hasRightChild(nodeIndex, currentSize) && queuePointer[getRightChildIndex(nodeIndex)].esi >/*MAXHEAP*/ queuePointer[getLeftChildIndex(nodeIndex)].esi) {
+            
+            smallerChildIndex = getRightChildIndex(nodeIndex);
+            
+        }
+        
+        if (queuePointer[nodeIndex].esi >/*MAXHEAP*/ queuePointer[smallerChildIndex].esi) {
+            break;
+        } else {
+            /* SWAPPING */
+            patientNode temp = queuePointer[smallerChildIndex];
+            queuePointer[smallerChildIndex] = queuePointer[nodeIndex];
+            queuePointer[nodeIndex] = temp;
+            /*          */
+            nodeIndex = smallerChildIndex;
+        }
+        
+    }
     
 }
-
