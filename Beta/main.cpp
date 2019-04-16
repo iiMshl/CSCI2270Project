@@ -18,7 +18,6 @@ int getESI(){
     string choice;
     bool invalid = true;
     
-    
     while (invalid) {
         invalid = false;
         
@@ -60,11 +59,11 @@ int getESI(){
                     } else { cout<<"Invalid input"<<endl; invalid=true;continue;}
                     
                 } else { cout<<"Invalid input"<<endl; invalid=true;continue;}
-                
+
             } else { cout<<"Invalid input"<<endl; invalid=true;continue;}
-            
+
         } else { cout<<"Invalid input"<<endl; invalid=true;continue;}
-        
+
     }
     
     return 5;
