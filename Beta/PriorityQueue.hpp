@@ -9,11 +9,8 @@
 
 
 struct patientNode {
-    
     std::string name;
     int esi;
-    int cat;
-    
 };
 
 

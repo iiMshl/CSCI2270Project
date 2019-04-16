@@ -17,17 +17,26 @@
 
 #include "PriorityQueue.hpp"
 
+
 using namespace std;
 
 
+/* MIGHT DELETE */
+struct patient {
+    
+    string name;
+    int esi;
+    int cat;
+    
+};
 
-struct doctorNode {
+struct doctor {
     
     int cat;
     vector<int> availability;
     PriorityQueue pq();
     
-    struct doctorNode* next; // pointer to the next node
+    struct doctor* next; // pointer to the next node
     
 };
 
@@ -39,12 +48,8 @@ public:
     Driver();
     ~Driver();
     
-    
+    void assignPatient(string name,int _esi,int _cat);
     void setDoctors();
-    
-    
-    void assignPatient(string name,int esi,int cat);
-    void removePatient(string name,int cat);
     
     
     
