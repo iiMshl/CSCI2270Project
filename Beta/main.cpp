@@ -11,6 +11,66 @@ using namespace std;
 
 
 
+
+
+int getESI(){
+    
+    string choice;
+    bool invalid = true;
+    
+    
+    while (invalid) {
+        invalid = false;
+        
+        cout << "does it require immediate life-saving intervention? \n(1.) Yes (2.) No" << endl;
+        getline(cin,choice);
+        
+        //Q1 Answer
+        if (choice=="1") {
+            return 1;
+            
+        } else if (choice=="2"){
+            
+            cout << "Is it a high risk situation, or a severe pain/distress? \n(1.) Yes (2.) No" << endl;
+            getline(cin,choice);
+            
+            //Q2 Answer
+            if (choice=="1") {
+                return 2;
+            } else if (choice=="2"){
+                
+                cout << "how many different resources are needed for it? \n(1.) None (2.) One (3.) Many" << endl;
+                getline(cin,choice);
+                
+                //Q3 Answer
+                if (choice=="1") {
+                    return 5;
+                } else if (choice=="2"){
+                    return 4;
+                } else if (choice=="3"){
+                    
+                    cout << "are vitals in danger zone? \n(1.) Yes (2.) No" << endl;
+                    getline(cin,choice);
+                    
+                    //Q4 Answer
+                    if (choice=="1") {
+                        return 2;
+                    } else if (choice=="2"){
+                        return 3;
+                    } else { cout<<"Invalid input"<<endl; invalid=true;continue;}
+                    
+                } else { cout<<"Invalid input"<<endl; invalid=true;continue;}
+                
+            } else { cout<<"Invalid input"<<endl; invalid=true;continue;}
+            
+        } else { cout<<"Invalid input"<<endl; invalid=true;continue;}
+        
+    }
+    
+    return 5;
+}
+
+
 void menu(){
     cout << "============Main Menu============" << endl;
     cout << "1. Get patients information from file" << endl;
