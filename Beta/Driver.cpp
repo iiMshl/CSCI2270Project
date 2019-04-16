@@ -29,9 +29,9 @@ Driver::~Driver(){
     
 }
 
-void Driver::assignPatient(string name,int _esi,int _cat){
+void Driver::assignPatient(string name,int esi,int cat){
     
-    doctors[_cat-1].pq().enqueue(name, _esi);
+    doctors[cat-1].pq().enqueue(name, esi);
     
 }
 
