@@ -11,6 +11,7 @@
 struct patientNode {
     
     std::string name;
+    std::string injury;
     int esi;
     int cat;
     
