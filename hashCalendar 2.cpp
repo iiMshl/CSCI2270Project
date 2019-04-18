@@ -117,7 +117,7 @@ void Calendar::viewDoctorAvailavility(std::string _doctorName)
     }
   }
 }
-bool Calendar::bookAppointment(std::string _doctorName, int day,std::string _patient)
+void Calendar::bookAppointment(std::string _doctorName, int day,std::string _patient)
 {
   CalendarNode* tmp = searchTable(day,_doctorName);
   int app = checkDay(_doctorName,day);
@@ -129,28 +129,25 @@ bool Calendar::bookAppointment(std::string _doctorName, int day,std::string _pat
     std::cout << "Enter 1 to schedule for morning" << std::endl;
     std::cout << "Enter 2 to schedule for afternoon" << std::endl;
     std::cout << "Enter Q to disreguard" << std::endl;
-    getline(std::cin,choice);
-    while(choice != "1" || choice != "2" || choice != "Q")
+    getline(cin,choice);
+    while(choice != "1" || choice != "2" || choice != Q)
     {
       std::cout << "Select one of the appointments or enter Q to cancel " << std::endl;
-      getline(std::cin,choice);
+      getline(cin,choice);
     }
     if(choice == "1")
     {
-      tmp->firstApp = true;
+      tmp->firstApp == true;
       tmp->Patient1 = _patient;
-      return true;
     }
     else if(choice == "2")
     {
-      tmp->secondApp = true;
+      tmp->secondApp == true;
       tmp->Patient2 = _patient;
-      return true;
     }
     else
     {
       std::cout << "No scheduled appointments for patient " << _patient << std::endl;
-      return false;
     }
   }
   else if(app == 2)
@@ -158,38 +155,21 @@ bool Calendar::bookAppointment(std::string _doctorName, int day,std::string _pat
     std::cout << "There is only an afternoon appointment" << std::endl;
     std::cout << "Do you want to schedule this appointment?" << std::endl;
     std::cout << "Enter (1) to confirm" << std::endl;
-    std::cout << "Enter (2) otherwise" << std::endl;
-    getline(std::cin,choice);
+    std::cout << "Enter (2) otherwise" << std:::endl;
+    getline(cin,choice);
     while(choice != "1" || choice != "2")
     {
       std::cout << "Enter a valid answer" << std::endl;
-      getline(std::cin,choice);
+      getline(cin,getline);
     }
   }
   else if(app == 1)
   {
-    std::cout << "There is only a morning appointment" << std::endl;
-    std::cout << "Do you want to schedule this appointment?" << std::endl;
-    std::cout << "Enter (1) to confirm" << std::endl;
-    std::cout << "Enter (2) otherwise" << std::endl;
-    getline(std::cin,choice);
-    while(choice != "1" || choice != "2")
-    {
-      std::cout << "Enter a valid answer" << std::endl;
-      getline(std::cin,choice);
-      if (choice == "2")
-      {
-        return false;
-      }
 
-    }
-    return true;
   }
   else if(app == 0)
   {
-    std::cout << "No available appointments for this day" << std::endl;
-    return false;
+
   }
-  return false;
 }
-// void Calendar::cancelAppointment(std::string _doctorName, int _day, std::string _patient)
+// void Calendar::cancelAppointment(std::string _doctorName, int _day, std::string _patient);

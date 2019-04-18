@@ -18,6 +18,7 @@
      secondApp = false;
      Patient1 = "";
      Patient2 = "";
+     next = NULL;
    }
  };
 
@@ -35,6 +36,6 @@ class Calendar
   void addDoctorDay(int _day, std::string _doctorName);
   int checkDay(std::string _doctorName,int _day);
   void viewDoctorAvailavility(std::string _doctorName);
-  void bookAppointment(std::string _doctorName, int day,std::string _patient);
+  bool bookAppointment(std::string _doctorName, int day,std::string _patient);
   void cancelAppointment(std::string _doctorName, int _day, std::string _patient);
 };
