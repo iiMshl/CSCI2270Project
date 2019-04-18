@@ -6,4 +6,4 @@ Deanne Dangelo,physiatrist,3 7 13 18 23 27 29,false,n/a
 Travis Lazenby,pulmonologist ,4 6 9 15 20 24 27 30 31,true,pulmonologist
 Chistopher Sullivan,chiropractor, 24 20 30 31 25 23 19 28 5 16 1 26 15 21 9 12 13 6 7 18,false,n/a
 William Smith,gastroenterologist, 29 11 7 28 20 13 30 26 10 31 16 2 17 19 9 21,false,n/a
-Shayon Gupta,general,2 3 4 7 12 14 17 19 20 21 24 30 31,true,general
+Shayon Gupta,general,2 3 4 7 12 14 17 19 20 21 24 30,true,general
