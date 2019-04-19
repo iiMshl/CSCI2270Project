@@ -51,7 +51,7 @@ Driver::~Driver(){
     
 }
 
-void Driver::assignPatient(string name,int esi,int cat){
+void Driver::assignPatient(string name,int esi,int cat,int age){
     
     doctors[cat-1].patients().enqueue(name, esi);
     

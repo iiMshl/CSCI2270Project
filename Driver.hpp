@@ -54,7 +54,7 @@ public:
     void setDoctors(string);
     
     
-    void assignPatient(string name,int esi,int cat);
+    void assignPatient(string name,int esi,int cat,int age);
     void removePatient(int cat);
     void showNextPatient();
     
