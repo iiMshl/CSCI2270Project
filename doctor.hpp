@@ -26,5 +26,5 @@ class doctorHash{
     void addDoctor(string _profession, string _name,std::vector<int> _available,bool _followup,string _fDoctor, Calendar &c);
     int hashFunction(string _profession);
     void printTable();
-    Doctor* searchDoctor(string _name, string _profession);
+    Doctor* searchDoctor(string _profession);
 };

@@ -68,7 +68,7 @@ void doctorHash::addDoctor(string _profession, string _name,std::vector<int> _av
   }
 }
 // void printTable();
-Doctor* doctorHash::searchDoctor(string name, string _profession)
+Doctor* doctorHash::searchDoctor(string _profession)
 {
   int index = hashFunction(_profession);
   Doctor* current = table[index];

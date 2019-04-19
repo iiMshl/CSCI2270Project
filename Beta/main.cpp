@@ -69,6 +69,32 @@ int getESI(){
     return 5;
 }
 
+void readPatients(std::string filename,PatientQueue &p, doctorHash &d)
+{
+    std::ifstream fin(filename);
+    if(fin.is_open())
+    {
+        std::string line;
+        while(getline(fin,line))
+        {
+            std::string _name, _age, _esi, _doctor;// create temporary holders to later convert to floats and integers.
+            int age,esi;
+            std::stringstream sin(line);
+            getline(sin, _name, ',');
+            getline(sin, _esi, ',');
+            getline(sin, _age, ',');
+            getline(sin, _doctor, ',');
+            age = stoi(_age);
+            esi = stoi(_esi);
+            std::cout << _name << " " << _esi << " " << _age << " " << _doctor << std::endl;
+            //Now find the location or node of the doctor and add patient to the queue
+            Doctor dNode = d.searchDoctor(_doctor);
+            // Add the patient to the dNode queue
+        }
+    }
+    fin.close();
+}
+
 void showCats(){
     
     cout << "1. Heart/Blood Vessels (Cardiologist)" << endl;
