@@ -6,10 +6,10 @@
 #include <sstream>
 
 #include "PriorityQueue.hpp"
+#include "Driver.hpp"
+#include "hashCalendar.hpp"
 
 using namespace std;
-
-
 
 
 
@@ -69,6 +69,19 @@ int getESI(){
     return 5;
 }
 
+void showCats(){
+    
+    cout << "1. Heart/Blood Vessels (Cardiologist)" << endl;
+    cout << "2. " << endl;
+    cout << "3. " << endl;
+    cout << "4. " << endl;
+    cout << "5. " << endl;
+    cout << "6. " << endl;
+    cout << "7. " << endl;
+    cout << "8. " << endl;
+    cout << "9. Other (General)" << endl;
+    
+}
 
 void menu(){
     cout << "============Main Menu============" << endl;
@@ -76,7 +89,7 @@ void menu(){
     cout << "2. Add a patient" << endl;
     cout << "3. Show next patients in the queue from all sections" << endl;
     cout << "4. Serve next patient" << endl;
-    cout << "5. Serve Entire Section" << endl;
+    cout << "5. Clear Entire Section" << endl;
     cout << "6. Quit" << endl;
 }
 
@@ -84,6 +97,10 @@ void menu(){
 int main(int argc, char const *argv[]){
     
     string choice;
+    
+    Driver dr;
+    
+    dr.setDoctors("doctors.txt");
     
     while (choice != "6") {
         menu();
@@ -93,23 +110,54 @@ int main(int argc, char const *argv[]){
                 
                 
                 
+                
                 break;
             }
             case 2:{
+                string name;
+                int esi;
+                string cat;
+                string age;
                 
+                cout << "Enter Patient Name: " << endl;
+                getline(cin,name);
+                
+                cout << "Enter Patient Age: " << endl;
+                getline(cin,age);
+                
+                cout << "What Would your injury categorize as?" << endl;
+                showCats();
+                getline(cin,cat);
+                
+                esi = getESI();
+                
+                dr.assignPatient(name, esi, stoi(cat),stoi(age));
                 
                 
                 break;
             }
             case 3:{
                 
-                
+                dr.showNextPatient();
                 
                 break;
             }
             case 4:{
                 
+                string entry;
                 
+                cout << "Choose A Category (1-9) Enter 0 To Show Categories" << endl;
+                getline(cin,entry);
+                
+                while (entry < "1") {
+                    if (entry == "0") {
+                        showCats();
+                    }
+                    cout << "Choose A Category (1-9) Enter 0 To Show Categories" << endl;
+                    getline(cin,entry);
+                }
+                
+                dr.removePatient(stoi(entry));
                 
                 break;
             }
