@@ -193,7 +193,7 @@ int main(int argc, char const *argv[]){
                 cout << "Choose A Doctor No. (1-9) Enter 0 To Show Doctors" << endl;
                 getline(cin,entry);
                 
-                while (entry < "1") {
+                while (entry < "1" || entry > "9") {
                     if (entry == "0") {
                         showCats();
                     }
@@ -208,7 +208,20 @@ int main(int argc, char const *argv[]){
             }
             case 5:{
                 
+                string entry;
                 
+                cout << "Choose A Doctor No. (1-9) Enter 0 To Show Doctors" << endl;
+                getline(cin,entry);
+                
+                while (entry < "1" || entry > "9") {
+                    if (entry == "0") {
+                        showCats();
+                    }
+                    cout << "Choose A Doctor No. (1-9) Enter 0 To Show Doctors" << endl;
+                    getline(cin,entry);
+                }
+                
+                dr.clearSection(stoi(entry));
                 
                 break;
             }

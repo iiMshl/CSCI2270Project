@@ -56,6 +56,7 @@ public:
     void assignPatient(string name,int esi,int cat,int age);
     void removePatient(int cat);
     void showNextPatient();
+    void clearSection(int cat);
     
     
 private:

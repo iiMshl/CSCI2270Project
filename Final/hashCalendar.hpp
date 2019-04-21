@@ -1,6 +1,7 @@
 #pragma once
 #include<iostream>
-//#include <map>
+#include <vector>
+
  struct CalendarNode
  {
    int day;
@@ -35,7 +36,7 @@ class Calendar
   Calendar();
   void addDoctorDay(int _day, std::string _doctorName);
   int checkDay(std::string _doctorName,int _day);
-  void viewDoctorAvailavility(std::string _doctorName);
+  std::vector<int> viewDoctorAvailability(std::string _doctorName);
   bool bookAppointment(std::string _doctorName, int day,std::string _patient);
   void cancelAppointment(std::string _doctorName, int _day, std::string _patient);
 };

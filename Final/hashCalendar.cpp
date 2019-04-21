@@ -2,7 +2,12 @@
 #include<string>
 #include<sstream>
 #include <fstream>
+#include <vector>
+
 #include "hashCalendar.hpp"
+
+using namespace std;
+
 
 Calendar::Calendar()
 {
@@ -60,22 +65,22 @@ int Calendar::checkDay(std::string _doctorName,int _day)
   {
     if(doctor->firstApp == false && doctor->secondApp == false)
     {
-      std::cout << "Doctor " << doctor->doctorName << " has 2 available appointments " << std::endl;
+      //std::cout << "Doctor " << doctor->doctorName << " has 2 available appointments " << std::endl;
       return 3; // this means 2 are open
     }
     else if(doctor->firstApp == false && doctor->secondApp == true)
     {
-      std::cout << "Doctor " << doctor->doctorName << " has a morning available appointment" << std::endl;
+      //std::cout << "Doctor " << doctor->doctorName << " has a morning available appointment" << std::endl;
       return 1;
     }
     else if(doctor->firstApp == true && doctor->secondApp == false)
     {
-      std::cout << "Doctor " << doctor->doctorName << " has an evening available appointment" << std::endl;
+      //std::cout << "Doctor " << doctor->doctorName << " has an evening available appointment" << std::endl;
       return 2;
     }
     else if(doctor->firstApp == true && doctor->secondApp == true)
     {
-      std::cout << "Doctor " << doctor->doctorName << " does not have any available appointments " << std::endl;
+      //std::cout << "Doctor " << doctor->doctorName << " does not have any available appointments " << std::endl;
       return 0;
     }
   }
@@ -85,111 +90,122 @@ int Calendar::checkDay(std::string _doctorName,int _day)
     return 0;
   //  }
 }
-void Calendar::viewDoctorAvailavility(std::string _doctorName)
+vector<int> Calendar::viewDoctorAvailability(std::string _doctorName)
 {
-  for(int i = 0; i < size; i++)
-  {
-    CalendarNode* doctor = hashCalendar[i];
+    
+    vector<int> vec;
 
-    while(doctor != NULL)
-    {
-        if(doctor->firstApp == false && doctor->secondApp == false)
-        {
-          std::cout << "Doctor " << doctor->doctorName << " has 2 available appointments on the " <<  doctor->day << std::endl;
-          //return true;
+    for (int i = 0; i < size; i++) {
+        
+        CalendarNode* node = hashCalendar[i];
+        
+        while (node!=NULL) {
+            if (node->doctorName == _doctorName) {
+                
+                if (node->firstApp == false || node->secondApp == false) {
+                    vec.push_back(node->day);
+                }
+            }
+            node = node->next;
         }
-        else if(doctor->firstApp == false && doctor->secondApp == true)
-        {
-          std::cout << "Doctor " << doctor->doctorName << " has a morning available appointment on the " <<  doctor->day << std::endl;
-          //return true;
-        }
-        else if(doctor->firstApp == true && doctor->secondApp == false)
-        {
-          std::cout << "Doctor " << doctor->doctorName << " has an evening available appointment on the " <<  doctor->day << std::endl;
-          //return true;
-        }
-        else if(doctor->firstApp == true && doctor->secondApp == true)
-        {
-          std::cout << "Doctor " << doctor->doctorName << " does not have any available appointments on the " <<  doctor->day << std::endl;
-          //return false;
-        }
-        doctor = doctor->next;
+        
     }
-  }
+    
+    if (vec.empty()) {
+        cout << "Dr. " << _doctorName << " Has No Available Appointments" << endl;
+    } else {
+        cout << "Dr. " << _doctorName << " Is Available On The Following Days: " << endl;
+        
+        for (int i=0; i<vec.size(); i++) {
+            cout << vec[i];
+            if (i+1<vec.size())
+                cout << ", ";
+        }
+        
+    }
+    
+    return vec;
+    
+    
 }
 bool Calendar::bookAppointment(std::string _doctorName, int day,std::string _patient)
 {
+    
   CalendarNode* tmp = searchTable(day,_doctorName);
   int app = checkDay(_doctorName,day);
-  std::string choice;
-  std::cout << "Doctor " << _doctorName << " has ";
-  if(app == 3)
-  {
-    std::cout << "two available appointments." << std::endl;
-    std::cout << "Enter 1 to schedule for morning" << std::endl;
-    std::cout << "Enter 2 to schedule for afternoon" << std::endl;
-    std::cout << "Enter Q to disreguard" << std::endl;
-    getline(std::cin,choice);
-    while(choice != "1" || choice != "2" || choice != "Q")
-    {
-      std::cout << "Select one of the appointments or enter Q to cancel " << std::endl;
-      getline(std::cin,choice);
-    }
-    if(choice == "1")
-    {
-      tmp->firstApp = true;
-      tmp->Patient1 = _patient;
-      return true;
-    }
-    else if(choice == "2")
-    {
-      tmp->secondApp = true;
-      tmp->Patient2 = _patient;
-      return true;
-    }
-    else
-    {
-      std::cout << "No scheduled appointments for patient " << _patient << std::endl;
-      return false;
-    }
-  }
-  else if(app == 2)
-  {
-    std::cout << "There is only an afternoon appointment" << std::endl;
-    std::cout << "Do you want to schedule this appointment?" << std::endl;
-    std::cout << "Enter (1) to confirm" << std::endl;
-    std::cout << "Enter (2) otherwise" << std::endl;
-    getline(std::cin,choice);
-    while(choice != "1" || choice != "2")
-    {
-      std::cout << "Enter a valid answer" << std::endl;
-      getline(std::cin,choice);
-    }
-  }
-  else if(app == 1)
-  {
-    std::cout << "There is only a morning appointment" << std::endl;
-    std::cout << "Do you want to schedule this appointment?" << std::endl;
-    std::cout << "Enter (1) to confirm" << std::endl;
-    std::cout << "Enter (2) otherwise" << std::endl;
-    getline(std::cin,choice);
-    while(choice != "1" || choice != "2")
-    {
-      std::cout << "Enter a valid answer" << std::endl;
-      getline(std::cin,choice);
-      if (choice == "2")
-      {
-        return false;
-      }
-
-    }
-    return true;
-  }
-  else if(app == 0)
-  {
-    std::cout << "No available appointments for this day" << std::endl;
+  string choice;
+  //cout << "Doctor " << _doctorName << " Has ";
+    
+    
+    if(app == 0) {
+    cout << "Dr. " << _doctorName << " Has No Available Appointments For This Day" << std::endl;
     return false;
-  }
+    } else {
+        
+        if (app==3) {
+            
+            cout << "Dr. " << _doctorName << " Has Two Available Appointments On This Day." << std::endl;
+            cout << "(1.) Morning (2.) Evening" << endl;
+            cout << "Please Enter Your Choice: " << endl;
+            getline(std::cin,choice);
+            
+            while (choice < "1" && choice > "2") {
+                cout << "Please Enter A Valid Answer" << endl;
+                cout << "Dr. " << _doctorName << " Has Two Available Appointments On This Day." << std::endl;
+                cout << "(1.) Morning (2.) Evening" << endl;
+                cout << "Please Enter Your Choice: " << endl;
+                getline(std::cin,choice);
+            }
+            
+            if(stoi(choice) == 1)
+            {
+                cout << "Appointment Booked: " << endl;
+                cout << "Patient: " << _patient << " || Dr: " << _doctorName << " || Date: " << day << " (Morning)" << endl;
+                tmp->firstApp = true;
+                tmp->Patient1 = _patient;
+                return true;
+            }
+            else if(stoi(choice) == 2)
+            {
+                cout << "Appointment Booked: " << endl;
+                cout << "Patient: " << _patient << " || Dr: " << _doctorName << " || Date: " << day << " (Evening)" << endl;
+                tmp->secondApp = true;
+                tmp->Patient2 = _patient;
+                return true;
+            }
+            else
+            {
+                cout << "No scheduled appointments for patient " << _patient << std::endl;
+                return false;
+            }
+            
+            
+            
+        } else if (app==2){
+            
+            cout << "Dr. " << _doctorName << " Is Available In The Evening" << endl;
+            cout << "Appointment Booked: " << endl;
+            cout << "Patient: " << _patient << " || Dr: " << _doctorName << " || Date: " << day << " (Evening)" << endl;
+            tmp->secondApp = true;
+            tmp->Patient2 = _patient;
+            
+            return true;
+            
+        } else if (app==1){
+            
+            cout << "Dr. " << _doctorName << " Is Available In The Morning" << endl;
+            cout << "Appointment Booked: " << endl;
+            cout << "Patient: " << _patient << " || Dr: " << _doctorName << " || Date: " << day << " (Morning)" << endl;
+            tmp->firstApp = true;
+            tmp->Patient1 = _patient;
+            
+            return true;
+        }
+        
+        
+    }
+    
+    
   return false;
 }
 // void Calendar::cancelAppointment(std::string _doctorName, int _day, std::string _patient)

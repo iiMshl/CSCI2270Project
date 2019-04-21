@@ -1,9 +1,9 @@
-Curt Biros,Cardiologist,4 7 11 13 16 20 22 27 31,t,Cardiologist
-Levi James,Orthopedic Surgeon,2 5 11 20 25 30,t,Chiropractor
-Debrah Fehrenbach,Dermatologist,7 12 24,t,Dermatologist
-Osvaldo Alvarado,Neurologist,1 5 8 11 14 16 19 23 26 27 31,t,Physiatrist
+Curt Biros,Cardiologist,4 7 11 13 16 20 22 27 31,t,Curt Biros
+Levi James,Orthopedic Surgeon,1 2 5 11 20 25 30,t,Christopher Sullivan
+Debrah Fehrenbach,Dermatologist,7 12 24,t,Debrah Fehrenbach
+Osvaldo Alvarado,Neurologist,1 5 8 11 14 16 19 23 26 27 31,t,Deanne Dangelo
 Deanne Dangelo,Physiatrist,3 7 13 18 23 27 29,f,N/A
-Travis Lazenby,Pulmonologist,4 6 9 15 20 24 27 30 31,t,Pulmonologist
-Christopher Sullivan,Chiropractor,24 20 30 31 25 23 19 28 5 16 1 26 15 21 9 12 13 6 7 18,f,N/A
-William Smith,Gastroenterologist,29 11 7 28 20 13 30 26 10 31 16 2 17 19 9 21,f,N/A
-Shayon Gupta,General,2 3 4 7 12 14 17 19 20 21 24 30 31,t,General
+Travis Lazenby,Pulmonologist,4 6 9 15 20 24 27 30 31,t,Travis Lazenby
+Christopher Sullivan,Chiropractor,1 4 7 9 14 16 23 30,f,N/A
+William Smith,Gastroenterologist,2 5 10 13 14 19 24 28,f,N/A
+Shayon Gupta,General,2 3 4 7 12 14 17 19 20 21 24 28,t,Shayon Gupta
