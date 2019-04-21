@@ -5,13 +5,32 @@
 #include <fstream>
 #include <sstream>
 
-#include "PriorityQueue.hpp"
 #include "Driver.hpp"
-#include "hashCalendar.hpp"
 
 using namespace std;
 
-
+int splitt(string str, char c, string array[], int size)
+{
+    if (str.length() == 0) {
+        return 0;
+    }
+    string word = "";
+    int count = 0;
+    str = str + c;
+    for (int i = 0; (unsigned)i < str.length(); i++)
+    {
+        if (str[i] == c)
+        {
+            if (word.length() == 0)
+                continue;
+            array[count++] = word;
+            word = "";
+        } else {
+            word = word + str[i];
+        }
+    }
+    return count ;
+}
 
 int getESI(){
     
@@ -69,42 +88,16 @@ int getESI(){
     return 5;
 }
 
-void readPatients(std::string filename,PatientQueue &p, doctorHash &d)
-{
-    std::ifstream fin(filename);
-    if(fin.is_open())
-    {
-        std::string line;
-        while(getline(fin,line))
-        {
-            std::string _name, _age, _esi, _doctor;// create temporary holders to later convert to floats and integers.
-            int age,esi;
-            std::stringstream sin(line);
-            getline(sin, _name, ',');
-            getline(sin, _esi, ',');
-            getline(sin, _age, ',');
-            getline(sin, _doctor, ',');
-            age = stoi(_age);
-            esi = stoi(_esi);
-            std::cout << _name << " " << _esi << " " << _age << " " << _doctor << std::endl;
-            //Now find the location or node of the doctor and add patient to the queue
-            Doctor dNode = d.searchDoctor(_doctor);
-            // Add the patient to the dNode queue
-        }
-    }
-    fin.close();
-}
-
 void showCats(){
     
-    cout << "1. Heart/Blood Vessels (Cardiologist)" << endl;
-    cout << "2. " << endl;
-    cout << "3. " << endl;
-    cout << "4. " << endl;
-    cout << "5. " << endl;
-    cout << "6. " << endl;
-    cout << "7. " << endl;
-    cout << "8. " << endl;
+    cout << "1. Cardiologist" << endl;
+    cout << "2. Orthopedic Surgeon" << endl;
+    cout << "3. Dermatologist" << endl;
+    cout << "4. Neurologist" << endl;
+    cout << "5. Physiatrist" << endl;
+    cout << "6. Pulmonologist" << endl;
+    cout << "7. Chiropractor" << endl;
+    cout << "8. Gastroenterologist" << endl;
     cout << "9. Other (General)" << endl;
     
 }
@@ -135,11 +128,35 @@ int main(int argc, char const *argv[]){
             case 1:{
                 
                 
+                string file;
+                
+                cout << "Enter File Name: " << endl;
+                getline(cin,file);
+                
+                ifstream f(file);
+                string line;
+                string arr[4];
+                int count = 0;
+                
+                if (f.is_open()) {
+                    cout << "Adding Patients.." << endl;
+                    while(getline(f,line)){
+                        
+                        splitt(line, ',', arr, 4);
+                        
+                        dr.assignPatient(arr[0], stoi(arr[1]), stoi(arr[3]), stoi(arr[2]));
+                        count ++;
+                    }
+                    cout << "Added " << count << " Patient" << endl;
+                } else
+                    cout << "Failed to open file (" << file << ")" << endl;
                 
                 
                 break;
             }
             case 2:{
+                
+                
                 string name;
                 int esi;
                 string cat;
@@ -151,7 +168,7 @@ int main(int argc, char const *argv[]){
                 cout << "Enter Patient Age: " << endl;
                 getline(cin,age);
                 
-                cout << "What Would your injury categorize as?" << endl;
+                cout << "Choose a Doctor to See: " << endl;
                 showCats();
                 getline(cin,cat);
                 
@@ -170,20 +187,22 @@ int main(int argc, char const *argv[]){
             }
             case 4:{
                 
+                
                 string entry;
                 
-                cout << "Choose A Category (1-9) Enter 0 To Show Categories" << endl;
+                cout << "Choose A Doctor No. (1-9) Enter 0 To Show Doctors" << endl;
                 getline(cin,entry);
                 
                 while (entry < "1") {
                     if (entry == "0") {
                         showCats();
                     }
-                    cout << "Choose A Category (1-9) Enter 0 To Show Categories" << endl;
+                    cout << "Choose A Doctor No. (1-9) Enter 0 To Show Doctors" << endl;
                     getline(cin,entry);
                 }
                 
                 dr.removePatient(stoi(entry));
+                
                 
                 break;
             }

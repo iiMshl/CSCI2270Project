@@ -11,8 +11,6 @@
 
 using namespace std;
 
-
-
 int split(string str, char c, string array[], int size)
 {
     if (str.length() == 0) {
@@ -37,9 +35,6 @@ int split(string str, char c, string array[], int size)
 }
 
 
-
-
-
 Driver::Driver(){
     
     
@@ -53,26 +48,35 @@ Driver::~Driver(){
 
 void Driver::assignPatient(string name,int esi,int cat,int age){
     
-    doctors[cat-1].patients().enqueue(name, esi);
+    doctors[cat-1].patients.enqueue(name, esi);
     
 }
 
 void Driver::removePatient(int cat){
     
-    cout << "Serving Patient: " << doctors[cat-1].patients().peek().name << " | Doctor: " << doctors[cat-1].name << endl;
-    doctors[cat-1].patients().dequeue();
+    cout << "Now Serving: " << doctors[cat-1].patients.peek().name << " || Dr. " << doctors[cat-1].name << endl;
+    doctors[cat-1].patients.dequeue();
     
     
     //!!!!!USE CALENDAR HERE:
     
     
+    cout << "Next in line: " << doctors[cat-1].patients.peek().name <<endl;
 }
 
 void Driver::showNextPatient(){
     
+    cout << "===========SERVING NEXT===========" << endl;
     for (int i=0; i<doctors.size(); i++) {
-        cout << "Doctor: " << doctors[i].name << " | Serving next: " << doctors[i].patients().peek().name << endl;
+        
+        if (doctors[i].patients.isEmpty()) {
+            cout << "Dr. " << doctors[i].name << " Have no patients" << endl;
+        } else {
+            cout << "Dr. " << doctors[i].name << " -> " << doctors[i].patients.peek().name << endl;
+        }
+        
     }
+    cout << "==================================" << endl;
     
 }
 

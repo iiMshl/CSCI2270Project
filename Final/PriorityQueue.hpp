@@ -38,6 +38,7 @@ public:
     // return: patient node at the front of the priority queue
     patientNode peek();
     
+    
     //return: true if queue is full, false otherwise
     bool isFull();
     

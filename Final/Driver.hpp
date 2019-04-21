@@ -14,7 +14,6 @@
 using namespace std;
 
 
-
 struct doctorsVect {
     
     string name;
@@ -24,7 +23,7 @@ struct doctorsVect {
     bool followup;
     string fDoctor;
     
-    PriorityQueue patients();
+    PriorityQueue patients;
     //Calendar cal;
     
     

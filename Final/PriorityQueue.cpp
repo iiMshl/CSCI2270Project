@@ -33,7 +33,7 @@ PriorityQueue::PriorityQueue(){
 // Purpose: deconstructor
 PriorityQueue::~PriorityQueue(){
     
-    delete [] queuePointer;
+    //delete [] queuePointer;
     
     queuePointer = 0;
     maxSize = 0;
@@ -85,6 +85,7 @@ patientNode PriorityQueue::peek(){
     return queuePointer[0];
     
 }
+
 
 //return: true if queue is full, false otherwise
 bool PriorityQueue::isFull(){
